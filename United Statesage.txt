@@ -1,0 +1,25 @@
+In the United States, one is assumed to be an adult, when the age of 18 is reached. However, 21 years are required to purchase alcohol. 30 years to serve as a Senator, and 35 to serve as president.
+
+Write the function legal_status(age) which returns one of the strings 'minor', 'adult','alcohol', 'senator', or 'president', depending on the parameter age.
+
+-------------------------------------------------------------------------------
+
+def legal_status(age):
+  if age < 18:
+    return 'minor'
+  elif age >= 35 and age >= 18:
+    return 'president'
+  elif age >= 30 and age >= 18:
+    return 'senator'
+  elif age >= 21 and age >= 18:
+    return 'alcohol'
+  elif age >= 18:
+    return 'adult'
+  else:
+    return null
+
+print(legal_status(8))
+print(legal_status(19))
+print(legal_status(33))
+print(legal_status(23))
+print(legal_status(40))
