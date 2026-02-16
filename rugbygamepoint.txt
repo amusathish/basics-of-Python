@@ -1,0 +1,63 @@
+Rugby Game Points
+In rugby, a team can score points in four different ways:
+
+A try is worth 5 points.
+A conversion is worth 2 points, but can only be attempted if a try has been scored.
+A penalty is worth 3 points.
+A drop goal is also worth 3 points.
+Your task is to define a function main() to compute the total number of game points based on user info about the number of tries, conversions, penalties, and drop goals a team has scored. Additionally, a conversion can only be attempted if a try is scored. If the number of conversions exceeds the number of tries, the input is invalid and should trigger an error message.
+
+Input:
+Number of tries (tries)
+Number of conversions (conversions)
+Number of penalties (penalties)
+Number of drop goals (drop_goals)
+Inputs must be read from the console, not passed to main as parameters.
+
+Output:
+All output should be printed with print, not returned as the result of the function.
+
+The total points scored by the team if valid input is provided.
+An error message if the number of conversions exceeds the number of tries.
+Example runs
+>>> Number of tries? 3
+>>> Number of conversions? 2
+>>> Number of penalties? 4
+>>> Number of drop goals? 0
+Game points: 31
+>>> Number of tries? 2
+>>> Number of conversions? 3
+Impossible: too many conversions or too few tries.
+Note that the program is expected to exit early if an input error occurs.
+
+Look for <-- Likely cause of exception in the output if an exception occured.
+
+-----------------------------------------------------------------------------------------------
+
+# Expected output in normal case for n game points: "Game points: n"
+def main():
+  Numtries=int(input("Number of tries?"))
+  Numconversion=int(input("Number of conversions?"))
+  
+# Expected output in case of conversion error: "Impossible: too many conversions or too few tries." 
+  if Numconversion > Numtries:
+      print("Impossible: too many conversions or too few tries.")
+      return
+
+  Penalties=int(input("Number of penalties?"))
+  DropGoals=int(input("Number of drop goals?"))
+  
+  if(Numtries >= 0):  
+    Gamepoints=(Numtries*5)+(Numconversion*2)+(Penalties*3)+(DropGoals*3)
+  else:
+    Gamepoints=(Numconversion*2)+(Penalties*3)+(DropGoals*3)
+  print("Game points:", Gamepoints)
+  
+#print(f"inputs[{Numtries},{Numconversion},{Penalties},{DropGoals}] is Game points: {Gamepoints}")
+
+
+main()
+  
+
+
+
