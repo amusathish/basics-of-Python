@@ -1,0 +1,68 @@
+Flower Sale Price Calculation
+A flower shop sells each flower for 20 SEK. They have two different types of discounts:
+
+Spring Sale: During weeks 14 to 17, there's a "Buy 1, Get 1 Free" offer — i.e., two flowers for the price of one.
+Bulk Discount: If a customer buys 200 or more flowers at once, they receive a 20% discount.
+However, these two discounts cannot be combined. The customer should always receive the better (i.e., cheaper) of the two deals.
+
+Define a function main() that:
+
+Asks the user for the number of flowers they want to buy.
+Asks for the current week number.
+Outputs the total price the customer needs to pay.
+Input:
+Number of flowers (int)
+Week number (int)
+Inputs must be read from the console, not passed to main as parameters.
+
+Output:
+Print the minimum price to be paid based on the applicable offer.
+Example runs
+>>> Number of flowers: 10
+>>> Week number: 1
+The price is 200
+>>> Number of flowers: 5
+>>> Week number: 15
+The price is 60
+>>> Number of flowers: 250
+>>> Week number: 17
+The price is 2500
+-------------------------------------------------------------------
+-------------------------------------------------------------------
+
+def calculate_flower_price(flower_count, week_number):
+#  pass 
+  bulkdiscounttotal = 0
+  springsaletotal = 0
+ #normal price
+  
+  normalpricetotal = flower_count * 20
+    
+    # Implement this logic
+    #Bulk Discount
+  if(flower_count >= 200):
+      bulkdiscounttotal = int((flower_count * 20) * 0.8)
+  else:
+      bulkdiscounttotal = normalpricetotal
+    #Spring Sale   
+  if(14 <= week_number <= 17):
+    totalreminder = flower_count%2
+    if(totalreminder == 1):
+      springsaletotal = int(((flower_count // 2) * 20) + 20)
+    else:
+      springsaletotal = int(((flower_count // 2) * 20))
+  else:
+    springsaletotal = normalpricetotal
+  #compare  
+  return (min(bulkdiscounttotal,springsaletotal,normalpricetotal))
+        
+def main():
+  # read input data
+  flower_count = int(input("Number of flowers to buy"))
+  week_number = int(input("which week number are you in"))
+  # use calculate_flower_price to do the computation
+  totalprice = int(calculate_flower_price(flower_count, week_number))
+  # print the result
+  print("The price is",totalprice)
+
+main()
