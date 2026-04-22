@@ -1,0 +1,28 @@
+
+Define a function duty_cycle(signal). It takes
+
+a nonempty list of 1s and 0s, which represents a signal.
+It calculates:
+
+the percentage of which the signal is active, i.e. the ratio of 1s to all values in the list.
+Example run:
+
+>>> duty_cycle([1, 0, 0, 1, 0, 0, 0, 0])
+25.0
+>>> duty_cycle([0, 1, 0, 0, 0, 1, 0])
+28.571428571428573
+
+================================
+
+def duty_cycle(signal):
+  b = signal.count(1)
+  c = len(signal)
+  result = (b /c) * 100
+  return(result)
+
+
+def main():    
+  duty_cycle([1, 0, 0, 1, 0, 0, 0, 0]) 
+  duty_cycle([0, 1, 0, 0, 0, 1, 0])
+  duty_cycle([0])
+  duty_cycle([1])
