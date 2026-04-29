@@ -1,0 +1,38 @@
+Task: Write a function read_angle_in_turns() which inputs a number of turns and returns a general angle which corresponds to the input number of turns. An error of ±1 degree is acceptable. You should assume that the input is in the form of any decimal number (positive or negative). The function should not use print.
+
+Example run:
+
+>>> read_angle_in_turns()
+Number of turns? 2.5
+(2, 180)
+>>> read_angle_in_turns()
+Number of turns? -0.666666666
+(-1, 120)
+Task: Write a function add(x,y) which takes two general angles and returns the compound general angle (ie. their sum).
+
+For example:
+
+ add((0,359),(0,1)) == (1,0)
+ add((-1,180),(0,200)) == (0,20)
+ ===============================================================
+
+import math
+def read_angle_in_turns():
+  turns = float(input("Number of turns?"))
+  roundcount = math.floor(turns)
+  angle_in_degree = int((turns - roundcount) * 360)
+  t = (roundcount, angle_in_degree)
+  return (t)
+
+def add(x,y):
+  r=(0,0)
+  totalangle = x[1] + y[1]
+  totalturns = x[0] + y[0]
+  if (totalangle >= 360):
+     totalturns = totalturns + 1
+     totalangle = totalangle - 360
+  else:
+     totalturns = totalturns 
+     totalangle = totalangle 
+  r = (totalturns,totalangle)
+  return (r[0],r[1])
