@@ -1,0 +1,38 @@
+Implement a function that prints a histogram using asterisks (*). The function should have the following signature:
+
+histogram(max_bar, labels, counts)
+Where the parameters are the following:
+
+max_bar: the number of "*" symbols for the value with the highest count
+labels: a list of the labels that the histogram should be printed for
+counts: a dictionary mapping labels to their counts
+This function can e.g. be used to print the word counts from lab 1. Here's an example run:
+
+counts = {"pig": 19, "cat":57, "wolf":42, "horse":26}
+labels = ["horse", "pig", "cat"]
+histogram(20,labels,counts)
+horse     *********
+pig       ******
+cat       ********************
+>>> 
+Requirements:
+
+the histogram should be printed in the same order as the labels in the list
+the largest count (57 in the example) should be printed with max_bar asterisks (20 in the example)
+the other counts should be printed with a proportionate number of asterisks
+the histogram bars should all start in the same column, column 10
+you can assume that all labels have at most 10 characters
+
+______________________________________________________________________________________________________
+
+def histogram(max_bar,labels,counts):
+# print in label order
+# finding biggest weight value
+  maxweight = max(counts.values())
+  #print("Max weight ready for the proportion :", maxweight)
+# according to the weight value find the * bar propation
+  for i in range(len(labels)):
+    if labels[i] in counts:
+      strengthofbar = int((counts[labels[i]] / maxweight) * max_bar)
+      answer = "*" * strengthofbar
+      print("{:<10}{}".format(labels[i],answer))
