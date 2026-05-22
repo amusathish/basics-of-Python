@@ -1,0 +1,32 @@
+def tournament(n, file_name):
+  file = open(file_name)
+  lines = file.readlines()
+  
+  mat = []
+  r = 0
+  c = 0
+  for r in range(n):
+    rows = []      
+    for c in range(n):
+      rows.append(0)
+    mat.append(rows)
+  
+  
+  for line in lines:
+    team1,team2,score1,score2 = line.split()
+    scorediff = int(score1)- int(score2)
+    team1 = int(team1) - 1
+    team2 = int(team2) - 1
+    mat[team1][team2] = scorediff
+    mat[team2][team1] = -scorediff
+  
+  
+  file.close()
+  print(mat)
+  return mat
+  
+  matrix = tournament(4, "scores.txt")
+  for row in matrix:
+    for scorediff in row:
+      print(str(scorediff).rjust(3), end=' ')
+    print()
