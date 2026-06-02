@@ -36,10 +36,11 @@ def aa_count(codons_list,genetic_code):
                 aacountlist[getgeneticvalue] = 1
     return aacountlist
 
-def read_dna(seq,filepath):
+ddef read_dna(seq,filepath):
     myfile = open(filepath,"r")
     #lines = myfile.readline()
-    result = []
+    result = ""
+    seqFound = False
     found = False
     
     for line in myfile:
@@ -47,12 +48,18 @@ def read_dna(seq,filepath):
         
         if line.startswith('>'):
             if line[1:].strip() == seq:
-                found = True
+                found = True 
+                if (found == True and seqFound == True):
+                    break
+                else:
+                    seqFound = True             
             else:
                 found = False
-        
+                if (found == False and result != ""):
+                    break
         elif found:
-         result.append((line.strip).upper())    
+           result += line.strip().upper() 
+        
     myfile.close()
     return result
         
@@ -83,13 +90,21 @@ genetic_code = {'GCT':'A','GCC':'A','GCA':'A','GCG':'A',
 # composition('sequence1','examples/example1.fna',genetic_code,['ATG','GTG'],['TAG','TAA'])
 def composition(seq,filepath,genetic_code,startcodon, stopcodon):
     frame = 0
-    for frame in range(3,1):
-        print("Frame :" ,frame)
-        protein = str(protein_extract(codons_extract(read_dna(seq,filepath),frame),startcodon,stopcodon))
-        aminoacidcount = str(aa_count(protein_extract(codons_extract(read_dna(seq,filepath),frame),startcodon,stopcodon),genetic_code))
+    dna=read_dna(seq,filepath)
+    if dna == "":
+        print("Error: the sequence is not in the file")
+        return
+    for frame in range(3):
         
-        print("protein:", protein)
-        print("amino acid count:", aminoacidcount)
+        protein = protein_extract(codons_extract(read_dna(seq,filepath),frame),startcodon,stopcodon)
+        if protein == []:
+             print(f"Frame {frame}: no valid protein")            
+        else:
+            aminoacidcount = str(aa_count(protein_extract(codons_extract(read_dna(seq,filepath),frame),startcodon,stopcodon),genetic_code))
+            print(f"Frame {frame}:")
+            print("protein:", protein)
+            print("amino acid count:", aminoacidcount)
+
 
           
 
